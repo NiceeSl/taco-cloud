@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,13 +17,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-@Table("orders")
+@Document
 public class TacoOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @PrimaryKey
-    private UUID id = Uuids.timeBased();
+    @Id
+    private String id;
 
     private Date placedAt;
 
@@ -51,10 +52,10 @@ public class TacoOrder implements Serializable {
     @Digits(integer =3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
 
-    @Column("tacos")
     private List<TacoUDT> tacos = new ArrayList<>();
 
     public void addTaco(Taco taco) {
+
         this.tacos.add(taco);
     }
 }
