@@ -3,17 +3,16 @@ package tacos;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -34,14 +33,17 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests()
-                .antMatchers("/design", "/orders").hasRole("USER")
-                .antMatchers("/", "/**").permitAll()
+                .antMatchers("/design", "/orders").access("hasRole(‘USER’)")
+                .antMatchers("/", "/**").access("permitAll()")
+                .and()
+                .formLogin()
+                .loginPage("/login")
                 .and()
                 .build();
     }
 
+
     public interface UserDetailsService {
-        UserDetails loadUserByUsername(String username) throws
-                UsernameNotFoundException;
+        UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
     }
 }
