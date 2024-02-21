@@ -17,8 +17,7 @@ public class Taco {
 
     private Date createdAt = new Date();
 
-    @Size(min = 1, message = "You must choose at least 1 ingredient")
-    private List<IngredientUDT> ingredients = new ArrayList<>();
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
