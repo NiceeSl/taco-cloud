@@ -16,8 +16,17 @@ public class RegistrationForm {
     private String zip;
     private String phone;
 
-    public User toUser(PasswordEncoder passwordEncoder) { return new User(
-            username, passwordEncoder.encode(password),
-            fullname, street, city, state, zip, phone); }
+    public User toUser(PasswordEncoder passwordEncoder) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setFullname(fullname);
+        user.setStreet(street);
+        user.setCity(city);
+        user.setState(state);
+        user.setZip(zip);
+        user.setPhoneNumber(phone);
+        return user;
+    }
 }
 

@@ -57,3 +57,5 @@ insert into INGREDIENT (id, name, type)
 values ('SLSA', 'Salsa', 'SAUCE');
 insert into INGREDIENT (id, name, type)
 values ('SRCR', 'Sour Cream', 'SAUCE');
+
+CREATE SEQUENCE IF NOT EXISTS USER_SEQ START WITH 1 INCREMENT BY 1;
