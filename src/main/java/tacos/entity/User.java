@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 
-@Entity
+@Entity(name = "\"User\"")
 @Data
 @NoArgsConstructor
 public class User implements UserDetails {
@@ -23,8 +23,17 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String username;
+    private String password;
+    private String fullname;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
+    private String phoneNumber;
 
     public void setId(Long id) {
         this.id = id;
@@ -61,15 +70,6 @@ public class User implements UserDetails {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    private String username;
-    private String password;
-    private String fullname;
-    private String street;
-    private String city;
-    private String state;
-    private String zip;
-    private String phoneNumber;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
