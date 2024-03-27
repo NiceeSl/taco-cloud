@@ -9,16 +9,14 @@ import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 
-@Entity(name = "\"User\"")
+@Entity(name = "APP_USERS")
 @Data
 @NoArgsConstructor
-public class User implements UserDetails {
+public class App_Users implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 

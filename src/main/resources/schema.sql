@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Ingredient
 
 CREATE TABLE IF NOT EXISTS Taco_Order
 (
-    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id              serial PRIMARY KEY,
     delivery_Name   VARCHAR(50) NOT NULL,
     delivery_Street VARCHAR(50) NOT NULL,
     delivery_City   VARCHAR(50) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Taco_Order
 
 CREATE TABLE IF NOT EXISTS Taco
 (
-    id             BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id             serial PRIMARY KEY,
     name           VARCHAR(50) NOT NULL,
     taco_order_id  BIGINT      NOT NULL,
     created_at     TIMESTAMP   NOT NULL,
@@ -35,6 +35,19 @@ CREATE TABLE IF NOT EXISTS Ingredient_Ref
     taco_key   BIGINT    NOT NULL,
     PRIMARY KEY (ingredient, taco),
     FOREIGN KEY (ingredient) REFERENCES Ingredient (id)
+);
+
+CREATE TABLE IF NOT EXISTS APP_USERS
+(
+    id serial,
+    username varchar(255),
+    password varchar(255),
+    fullname varchar(255),
+    city varchar(255),
+    state varchar(255),
+    street varchar(255),
+    zip varchar(255),
+    phoneNumber varchar(255)
 );
 
 insert into INGREDIENT (id, name, type)
@@ -60,3 +73,9 @@ values ('SRCR', 'Sour Cream', 'SAUCE');
 
 
 -- CREATE SEQUENCE USER_SEQ START WITH 1 INCREMENT BY 1;
+-- DROP TABLE `USER`;
+
+
+
+
+

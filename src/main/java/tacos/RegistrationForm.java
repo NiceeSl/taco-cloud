@@ -2,7 +2,7 @@ package tacos;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.Data;
-import tacos.entity.User;
+import tacos.entity.App_Users;
 
 @Data
 public class RegistrationForm {
@@ -16,8 +16,8 @@ public class RegistrationForm {
     private String zip;
     private String phone;
 
-    public User toUser(PasswordEncoder passwordEncoder) {
-        User user = new User();
+    public App_Users toUser(PasswordEncoder passwordEncoder) {
+        App_Users user = new App_Users();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setFullname(fullname);
