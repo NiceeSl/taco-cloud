@@ -2,6 +2,8 @@ spring:
   datasource:
     generate-unique-name: false
     name: tacocloud
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
   cassandra:
     keyspace-name: tacocloud
     schema-action: recreate

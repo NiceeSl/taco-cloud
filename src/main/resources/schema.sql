@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS Ingredient_Ref
     FOREIGN KEY (ingredient) REFERENCES Ingredient (id)
 );
 
-CREATE TABLE IF NOT EXISTS APP_USERS
+CREATE TABLE IF NOT EXISTS Users
 (
     id serial,
     username varchar(255),

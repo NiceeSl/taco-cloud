@@ -1,5 +1,7 @@
 package tacos;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import tacos.entity.App_Users;
+import tacos.entity.Users;
 import tacos.repository.UserRepository;
 
 @Configuration
@@ -24,7 +26,8 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepo) {
         return username -> {
-            App_Users user = userRepo.findByUsername(username);
+            Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+            Users user = userRepo.findByUsername(username);
             if (user != null) return user;
             throw new UsernameNotFoundException("User ‘" + username + "’ not found");
         };

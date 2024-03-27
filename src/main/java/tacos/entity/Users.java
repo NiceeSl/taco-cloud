@@ -13,10 +13,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Entity(name = "APP_USERS")
+@Entity(name = "USERS")
 @Data
 @NoArgsConstructor
-public class App_Users implements UserDetails {
+public class Users implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,6 +32,17 @@ public class App_Users implements UserDetails {
     private String state;
     private String zip;
     private String phoneNumber;
+
+    public Users(String username, String password, String fullname, String street, String city, String state, String zip, String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+    }
 
     public void setId(Long id) {
         this.id = id;
